@@ -2,13 +2,25 @@ import {createFeatureSelector, createSelector} from '@ngrx/store'
 import {IAppState} from '../../shared/types/appState.interface'
 import {IAuthState} from '../types/authState.interface'
 
-export const authFeatureSelector = (state: IAppState): IAuthState => state.auth
+export const authFeatureSelector = createFeatureSelector<IAuthState>('auth')
 
 export const isSubmitingSelector = createSelector(
   authFeatureSelector,
-  (authState: IAuthState) => authState.isSubmiting
+  (authState) => authState.isSubmiting
 )
-export const validationErrors = createSelector(
+export const validationErrorsSelector = createSelector(
   authFeatureSelector,
   (authState: IAuthState) => authState.validationErrors
+)
+export const isLoggedInSelector = createSelector(
+  authFeatureSelector,
+  (authState: IAuthState) => authState.isLoggedIn
+)
+export const noAuthSelector = createSelector(
+  authFeatureSelector,
+  (authState: IAuthState) => authState.isLoggedIn === false
+)
+export const userSelector = createSelector(
+  authFeatureSelector,
+  (authState: IAuthState) => authState.currentUser
 )

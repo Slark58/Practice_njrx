@@ -12,13 +12,14 @@ import {AuthService} from '../../services/auth.service'
 import {ICurrentUser} from '../../../shared/types/currentUser.interface'
 import {IRegisterRequest} from '../../types/registerRequest.interface'
 import {IBackendErrors} from '../../../shared/types/backendErrors.interface'
+import {loginAction} from '../../store/actions/login.action'
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss'],
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
 })
-export class RegisterComponent implements OnInit {
+export class LoginComponent implements OnInit {
   form: FormGroup
   isSubmiting$: Observable<boolean>
   backErrors$: Observable<IBackendErrors | null>
@@ -38,9 +39,8 @@ export class RegisterComponent implements OnInit {
 
   initializeForm(): void {
     this.form = this.fb.group({
-      username: ['', Validators.required],
-      email: ['', Validators.required],
-      password: ['', Validators.required],
+      email: [''],
+      password: [''],
     })
     console.log(this.form.valid)
   }
@@ -50,6 +50,6 @@ export class RegisterComponent implements OnInit {
     const request: IRegisterRequest = {
       user: this.form.value,
     }
-    this.store.dispatch(registerAction({request}))
+    this.store.dispatch(loginAction({request}))
   }
 }

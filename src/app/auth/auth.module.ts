@@ -10,11 +10,18 @@ import {HttpClientModule} from '@angular/common/http'
 import {EffectsModule} from '@ngrx/effects'
 import {RegisterEffect} from './store/effects/register.effect'
 import {BackendErrorMessagesModule} from '../shared/modules/backend-error-messages/backend-error-messages.module'
+import {LoginEffect} from './store/effects/login.effect'
+import {LoginComponent} from './components/login/login.component'
+import {CheckAuthEffect} from './store/effects/checkAuth.effect'
 
 const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent,
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
   },
 ]
 
@@ -26,10 +33,10 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     StoreModule.forFeature('auth', reducer),
-    EffectsModule.forFeature([RegisterEffect]),
+    EffectsModule.forFeature([RegisterEffect, LoginEffect, CheckAuthEffect]),
   ],
-  exports: [RegisterComponent],
-  declarations: [RegisterComponent],
+  exports: [RegisterComponent, LoginComponent],
+  declarations: [RegisterComponent, LoginComponent],
   providers: [AuthService],
 })
 export class AuthModule {}

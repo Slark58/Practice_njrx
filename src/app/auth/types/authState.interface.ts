@@ -3,6 +3,7 @@ import {ICurrentUser} from '../../shared/types/currentUser.interface'
 
 export interface IAuthState {
   isSubmiting: boolean
+  isLoading: boolean
   currentUser: ICurrentUser | null
   isLoggedIn: boolean | null
   validationErrors: IBackendErrors | null
