@@ -1,3 +1,28 @@
-<p>
-  feed works!
-</p>
+<div class="" *ngIf="isLoading$ | async">Loadi</div>
+<div class="" *ngIf="error$ | async">Some was wrong..</div>
+
+<div class="" *ngIf="feeds$ | async">
+  <div class="article-preview" *ngFor="let article of (feeds$ | async)?.articles">
+    <div class="article-meta">
+      <a href="" [routerLink]="['/routePath']">
+        <img [src]="article.author.image" [alt]="article.author.username">
+      </a>
+
+      <div class="info">
+        <a href="" [routerLink]="['/routePath']">
+          {{article.author.username}}
+        </a>
+        <span>{{article.createdAt}}</span>
+      </div>
+      <div class="pull-xs-right">
+        add to favorities
+      </div>
+    </div>
+    <a [routerLink]="['/articles', article.slug]" class="preview-link">
+      <h1>{{article.description}}</h1>
+      LIST OF TAGS
+    </a>
+  </div>
+
+  PAGINATION
+</div>
