@@ -11,6 +11,7 @@ import {TopBarModule} from './shared/modules/top-bar/top-bar.module'
 import {HTTP_INTERCEPTORS} from '@angular/common/http'
 import {AuthInterceptorService} from './shared/services/auth-interceptor.service'
 import {GlobalFeedModule} from './global-feed/global-feed.module'
+import {StoreRouterConnectingModule, routerReducer} from '@ngrx/router-store'
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,7 +21,10 @@ import {GlobalFeedModule} from './global-feed/global-feed.module'
     AuthModule,
     TopBarModule,
     GlobalFeedModule,
-    StoreModule.forRoot({}),
+    StoreModule.forRoot({
+      router: routerReducer,
+    }),
+    StoreRouterConnectingModule.forRoot(),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,

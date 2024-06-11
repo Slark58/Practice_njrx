@@ -1,5 +1,5 @@
-<div class="" *ngIf="isLoading$ | async">Loadi</div>
-<div class="" *ngIf="error$ | async">Some was wrong..</div>
+<app-loading *ngIf="isLoading$ | async"></app-loading>
+<app-error-message *ngIf="error$ | async"></app-error-message>
 
 <div class="" *ngIf="feeds$ | async">
   <div class="article-preview" *ngFor="let article of (feeds$ | async)?.articles">
@@ -24,5 +24,6 @@
     </a>
   </div>
 
-  PAGINATION
+  <app-pagination [total]="(feeds$ | async).articlesCount" [limit]="limit" [url]="baseUrl" [currentPage]="currentPage">
+  </app-pagination>
 </div>
