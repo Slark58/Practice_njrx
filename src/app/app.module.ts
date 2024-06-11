@@ -10,6 +10,7 @@ import {EffectsModule} from '@ngrx/effects'
 import {TopBarModule} from './shared/modules/top-bar/top-bar.module'
 import {HTTP_INTERCEPTORS} from '@angular/common/http'
 import {AuthInterceptorService} from './shared/services/auth-interceptor.service'
+import {GlobalFeedModule} from './global-feed/global-feed.module'
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +19,7 @@ import {AuthInterceptorService} from './shared/services/auth-interceptor.service
     AppRoutingModule,
     AuthModule,
     TopBarModule,
+    GlobalFeedModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({
