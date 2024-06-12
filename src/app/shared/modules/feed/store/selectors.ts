@@ -1,7 +1,7 @@
 import {createFeatureSelector, createSelector} from '@ngrx/store'
 import {IFeedState} from '../types/feedState.interface'
 
-export const feedFeatureSelector = createFeatureSelector<IFeedState>('auth')
+export const feedFeatureSelector = createFeatureSelector<IFeedState>('feed')
 
 export const isLoadingSelector = createSelector(
   feedFeatureSelector,

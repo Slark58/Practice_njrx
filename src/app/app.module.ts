@@ -12,12 +12,16 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http'
 import {AuthInterceptorService} from './shared/services/auth-interceptor.service'
 import {GlobalFeedModule} from './global-feed/global-feed.module'
 import {StoreRouterConnectingModule, routerReducer} from '@ngrx/router-store'
+import {YourFeedModule} from './your-feed/your-feed.module'
+import {TagFeedModule} from './tag-feed/tag-feed.module'
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    YourFeedModule,
+    TagFeedModule,
     AuthModule,
     TopBarModule,
     GlobalFeedModule,

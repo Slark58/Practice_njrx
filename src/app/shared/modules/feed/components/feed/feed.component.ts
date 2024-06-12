@@ -1,4 +1,11 @@
-import {Component, Input, OnInit, inject} from '@angular/core'
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+  inject,
+} from '@angular/core'
 import {Store, select} from '@ngrx/store'
 import {getFeedAction} from '../../store/actions/getFeed.action'
 import {Observable} from 'rxjs'
@@ -17,7 +24,7 @@ import queryString from 'query-string'
   templateUrl: './feed.component.html',
   styleUrls: ['./feed.component.scss'],
 })
-export class FeedComponent implements OnInit {
+export class FeedComponent implements OnInit, OnChanges {
   @Input('apiUrl') apiUrlProps: string
   store = inject(Store)
   router = inject(Router)
@@ -35,6 +42,20 @@ export class FeedComponent implements OnInit {
     this.initListeners()
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes)
+    const isApiUrlChanged =
+      !changes['apiUrlProps'].firstChange &&
+      changes['apiUrlProps'].currentValue !==
+        changes['apiUrlProps'].previousValue
+
+    console.log('isApiUrlChanged: ', isApiUrlChanged)
+
+    if (isApiUrlChanged) {
+      this.fetchFeed()
+    }
+  }
+
   initValues(): void {
     this.isLoading$ = this.store.pipe(select(isLoadingSelector))
     this.error$ = this.store.pipe(select(errorSelector))
@@ -46,7 +67,6 @@ export class FeedComponent implements OnInit {
     this.activeRoute.queryParams.subscribe((params: Params) => {
       this.currentPage = Number(params['page'] || '1')
       this.fetchFeed()
-      console.log('this.currentPage: ', this.currentPage)
     })
   }
   fetchFeed(): void {
@@ -59,16 +79,6 @@ export class FeedComponent implements OnInit {
     })
 
     const apiUrlWithParams = `${parsedURl.url}?${stringifiedParams}`
-    console.log(
-      'this.apiUrlProps: ',
-      this.apiUrlProps,
-      'parsedURl: ',
-      parsedURl,
-      'stringifiedParams: ',
-      stringifiedParams,
-      'apiUrlWithParams: ',
-      apiUrlWithParams
-    )
     this.store.dispatch(getFeedAction({url: apiUrlWithParams}))
   }
 }

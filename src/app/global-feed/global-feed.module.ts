@@ -5,6 +5,8 @@ import {GlobalFeedComponent} from './components/global-feed/global-feed.componen
 import {FeedModule} from '../shared/modules/feed/feed.module'
 import {BannerModule} from '../shared/modules/banner/banner.module'
 import {ErrorMessageModule} from '../shared/modules/error-message/error-message.module'
+import {PopularTagsModule} from '../shared/modules/popular-tags/popular-tags.module'
+import {FeedTogglerModule} from '../shared/modules/feed-toggler/feed-toggler.module'
 
 const routes: Routes = [
   {
@@ -15,6 +17,8 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
+    PopularTagsModule,
+    FeedTogglerModule,
     BannerModule,
     FeedModule,
     CommonModule,

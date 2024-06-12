@@ -32,7 +32,6 @@ export class RegisterComponent implements OnInit {
 
   initializeValues(): void {
     this.isSubmiting$ = this.store.pipe(select(isSubmitingSelector))
-    this.isSubmiting$.subscribe((data) => console.log(data))
     this.backErrors$ = this.store.pipe(select(validationErrorsSelector))
   }
 

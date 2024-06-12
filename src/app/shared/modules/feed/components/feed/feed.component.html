@@ -4,12 +4,11 @@
 <div class="" *ngIf="feeds$ | async">
   <div class="article-preview" *ngFor="let article of (feeds$ | async)?.articles">
     <div class="article-meta">
-      <a href="" [routerLink]="['/routePath']">
+      <a href="" [routerLink]="['/profile', article.author.username]">
         <img [src]="article.author.image" [alt]="article.author.username">
       </a>
-
       <div class="info">
-        <a href="" [routerLink]="['/routePath']">
+        <a href="" [routerLink]="['/profile', article.author.username]">
           {{article.author.username}}
         </a>
         <span>{{article.createdAt}}</span>
@@ -21,6 +20,7 @@
     <a [routerLink]="['/articles', article.slug]" class="preview-link">
       <h1>{{article.description}}</h1>
       LIST OF TAGS
+      <app-tag-list [tags]="article.tagList"></app-tag-list>
     </a>
   </div>
 
