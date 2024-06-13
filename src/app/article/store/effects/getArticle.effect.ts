@@ -7,7 +7,7 @@ import {
   getArticleAction,
   getArticleFailureAction,
   getArticleSuccessAction,
-} from '../actions/getFeed.action'
+} from '../actions/getArticle.action'
 
 @Injectable()
 export class GetArticleEffect {
@@ -16,7 +16,7 @@ export class GetArticleEffect {
     private articleService: SharedArticleService
   ) {}
 
-  getFeed$ = createEffect(() =>
+  getArticle$ = createEffect(() =>
     this.actions$.pipe(
       ofType(getArticleAction),
       switchMap(({slug}) => {

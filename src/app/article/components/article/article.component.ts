@@ -11,7 +11,7 @@ import {ActivatedRoute, Router} from '@angular/router'
 import {Store, select} from '@ngrx/store'
 import {Observable, Subscription, combineLatest, map} from 'rxjs'
 import {environment} from '../../../../environments/environment.development'
-import {getArticleAction} from '../../store/actions/getFeed.action'
+import {getArticleAction} from '../../store/actions/getArticle.action'
 import {IArticle} from '../../../shared/types/acricle.interface'
 import {
   articleSelector,
@@ -20,9 +20,10 @@ import {
 } from '../../store/selectors'
 import {userSelector} from '../../../auth/store/selectors'
 import {ICurrentUser} from '../../../shared/types/currentUser.interface'
+import {deleteArticleAction} from '../../store/actions/deleteArticle.action'
 
 @Component({
-  selector: 'app-feed',
+  selector: 'app-article',
   templateUrl: './article.component.html',
   styleUrls: ['./article.component.scss'],
 })
@@ -50,6 +51,10 @@ export class ArticleComponent implements OnInit, OnDestroy {
 
   fetchData() {
     this.store.dispatch(getArticleAction({slug: this.slug}))
+  }
+
+  deleteArticle(): void {
+    this.store.dispatch(deleteArticleAction({slug: this.slug}))
   }
 
   initValues(): void {

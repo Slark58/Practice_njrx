@@ -14,6 +14,8 @@ import {ArticleComponent} from './components/article/article.component'
 import {ArticleService as SharedArticleService} from '../shared/services/article.service'
 import {UtilsService} from '../shared/services/utils.service'
 import {ErrorMessageModule} from '../shared/modules/error-message/error-message.module'
+import {ArticleService} from './services/article.service'
+import {DeleteArticleEffect} from './store/effects/deleteArticle.effect'
 
 const routes = [
   {
@@ -29,11 +31,11 @@ const routes = [
     TagListModule,
     LoadingModule,
     CommonModule,
-    EffectsModule.forFeature([GetArticleEffect]),
+    EffectsModule.forFeature([GetArticleEffect, DeleteArticleEffect]),
     StoreModule.forFeature('article', reducers),
   ],
   exports: [ArticleComponent],
   declarations: [ArticleComponent],
-  providers: [SharedArticleService, UtilsService],
+  providers: [SharedArticleService, UtilsService, ArticleService],
 })
 export class ArticleModule {}

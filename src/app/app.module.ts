@@ -15,6 +15,7 @@ import {StoreRouterConnectingModule, routerReducer} from '@ngrx/router-store'
 import {YourFeedModule} from './your-feed/your-feed.module'
 import {TagFeedModule} from './tag-feed/tag-feed.module'
 import {ArticleModule} from './article/article.module'
+import {CreateArticleModule} from './createArticle/create-article.module'
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,6 +25,7 @@ import {ArticleModule} from './article/article.module'
     YourFeedModule,
     TagFeedModule,
     AuthModule,
+    CreateArticleModule,
     ArticleModule,
     TopBarModule,
     GlobalFeedModule,
