@@ -1,0 +1,41 @@
+<div class="settings-page" *ngIf="user">
+  <div class="container page">
+    <div class="row">
+      <div class="col-md-6 offset-md-3 col-xs-12">
+        <h1 class="text-xs-center">Settings</h1>
+
+        <app-backend-error-messages *ngIf="backendErrors$ | async" [backendErrors]="backendErrors$ | async">
+        </app-backend-error-messages>
+
+        <form [formGroup]="updateform" (ngSubmit)="submit()">
+          <fieldset>
+            <fieldset class="form-group">
+              <input type="text" class="form-control from-control-lg" formControlName="image" placeholder="imgage">
+            </fieldset>
+            <fieldset class="form-group">
+              <input type="text" class="form-control from-control-lg" formControlName="username" placeholder="Username">
+            </fieldset>
+            <fieldset class="form-group">
+              <textarea type="text" class="form-control from-control-lg" formControlName="bio"
+                placeholder="bio"></textarea>
+            </fieldset>
+            <fieldset class="form-group">
+              <input type="text" class="form-control from-control-lg" formControlName="email" placeholder="email">
+            </fieldset>
+            <fieldset class="form-group">
+              <input type="text" class="form-control from-control-lg" formControlName="password" placeholder="password">
+            </fieldset>
+          </fieldset>
+
+          <button type="submit" class="btn btn-lg btn-primary pull-xs-right"
+            [disabled]="updateform.invalid || (isSubmitting$ | async)">Update settings</button>
+        </form>
+
+        <hr>
+
+        <button type="text" class="btn btn-outline-danger" (click)="logout()">Logout</button>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -3,16 +3,17 @@ import {ActionTypes} from '../actionsTypes'
 import {ILoginRequest} from '../../types/loginRequest.interface'
 import {IBackendErrors} from '../../../shared/types/backendErrors.interface'
 import {ICurrentUser} from '../../../shared/types/currentUser.interface'
+import {IUserInput} from '../../../shared/types/userInput.interface'
 
-export const loginAction = createAction(
-  ActionTypes.LOGIN,
-  props<{request: ILoginRequest}>()
+export const updateUserAction = createAction(
+  ActionTypes.UPDATE_USER,
+  props<{userInput: IUserInput}>()
 )
-export const loginSuccessAction = createAction(
-  ActionTypes.LOGIN_SUCCESS,
+export const updateUserSuccessAction = createAction(
+  ActionTypes.UPDATE_USER_SUCCESS,
   props<{currentUser: ICurrentUser}>()
 )
-export const loginFailureAction = createAction(
-  ActionTypes.LOGIN_FAILURE,
+export const updateUserFailureAction = createAction(
+  ActionTypes.UPDATE_USER_FAILURE,
   props<{errors: IBackendErrors}>()
 )

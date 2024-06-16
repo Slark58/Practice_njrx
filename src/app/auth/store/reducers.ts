@@ -15,6 +15,8 @@ import {
   checkAuthFailureAction,
   checkAuthSuccessAction,
 } from './actions/checkAuth.action'
+import {updateUserSuccessAction} from './actions/updateUser.action'
+import {logoutAction} from './actions/sync.action'
 
 const initialState: IAuthState = {
   isSubmiting: false,
@@ -105,6 +107,23 @@ const authReducer = createReducer(
       isLoading: false,
       isLoggedIn: false,
       currentUser: null,
+    })
+  ),
+
+  //$ UPDATE USER $//
+
+  on(
+    updateUserSuccessAction,
+    (state, action): IAuthState => ({
+      ...state,
+      currentUser: action.currentUser,
+    })
+  ),
+  on(
+    logoutAction,
+    (state): IAuthState => ({
+      ...state,
+      isLoggedIn: false,
     })
   )
 )

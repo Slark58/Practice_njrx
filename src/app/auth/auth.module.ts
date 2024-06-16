@@ -13,6 +13,8 @@ import {BackendErrorMessagesModule} from '../shared/modules/backend-error-messag
 import {LoginEffect} from './store/effects/login.effect'
 import {LoginComponent} from './components/login/login.component'
 import {CheckAuthEffect} from './store/effects/checkAuth.effect'
+import {UpdateUserEffect} from './store/effects/updateUser.effect'
+import {LogoutEffect} from './store/effects/logout.effect'
 
 const routes: Routes = [
   {
@@ -33,7 +35,13 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     StoreModule.forFeature('auth', reducer),
-    EffectsModule.forFeature([RegisterEffect, LoginEffect, CheckAuthEffect]),
+    EffectsModule.forFeature([
+      RegisterEffect,
+      LoginEffect,
+      CheckAuthEffect,
+      UpdateUserEffect,
+      LogoutEffect,
+    ]),
   ],
   exports: [RegisterComponent, LoginComponent],
   declarations: [RegisterComponent, LoginComponent],

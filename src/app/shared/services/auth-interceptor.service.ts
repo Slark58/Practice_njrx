@@ -19,11 +19,16 @@ export class AuthInterceptorService implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const token = this.persistenceService.get('accessToken')
-    req = req.clone({
-      setHeaders: {
-        Authorization: token ? `Token ${token}` : '',
-      },
-    })
+
+    console.log('intercepter = ', token)
+
+    if (token) {
+      const newReq = req.clone({
+        headers: req.headers.set('Authorization', `Bearer ${token}`),
+      })
+      return next.handle(newReq)
+    }
+
     return next.handle(req)
   }
 }

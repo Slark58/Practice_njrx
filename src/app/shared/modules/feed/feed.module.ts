@@ -13,6 +13,7 @@ import {LoadingModule} from '../loading/loading.module'
 import {PaginationModule} from '../pagination/pagination.module'
 import {TagListModule} from '../tag-list/tag-list.module'
 import {UtilsService} from '../../services/utils.service'
+import {AddToFavoritesModule} from '../add-to-favorites/add-to-favorites.module'
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import {UtilsService} from '../../services/utils.service'
     TagListModule,
     LoadingModule,
     PaginationModule,
+    AddToFavoritesModule,
     CommonModule,
     EffectsModule.forFeature([GetFeedEffect]),
     StoreModule.forFeature('feed', reducers),
